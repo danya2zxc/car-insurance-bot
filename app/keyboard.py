@@ -23,11 +23,11 @@ change_photo_kb = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(text="🛂 Change passport", callback_data="change_passport"),
-            InlineKeyboardButton(text="🚗 Change vehicle identification document", callback_data="change_vehicle_document")
+            InlineKeyboardButton(text="🚗 Change vehicle document", callback_data="change_vehicle_document")
         ],
         
         [
-                InlineKeyboardButton(text="⬅ Cancel changing", callback_data="cancel_changing_passports")
+                InlineKeyboardButton(text="⬅ Cancel changing", callback_data="cancel_changing")
         ]
     ]
 )
@@ -37,7 +37,7 @@ change_photo_kb = InlineKeyboardMarkup(
 cancel_only_kb = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text="⬅ Cancel changing", callback_data="cancel_changing_passport")
+            InlineKeyboardButton(text="⬅ Cancel changing", callback_data="cancel_changing")
         ]
     ]
 )
