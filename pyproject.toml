@@ -5,18 +5,48 @@ description = "Telegram bot for car insurance sales with document OCR and LLM-po
 authors = [
     {name = "Daniel",email = "danya2zxc@gmail.com"}
 ]
+
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "aiogram (>=3.21.0,<4.0.0)",
+    "aiogram[redis] (>=3.21.0,<4.0.0)",
     "pydantic (>=2.11.7,<3.0.0)",
     "pydantic-settings (>=2.10.1,<3.0.0)",
     "watchdog (>=6.0.0,<7.0.0)",
-    "mindee (>=4.24.0,<5.0.0)"
+    "mindee (>=4.24.0,<5.0.0)",
+    "openai (>=1.97.1,<2.0.0)",
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.12.4"
+
+
+[tool.ruff]
+target-version = "py311"
+exclude = [
+    ".git",
+    ".ruff_cache",
+    ".venv",
+    "__pycache__",
+    "venv",
+]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "SIM", "TID"]
+ignore = ["E501"]
+
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+
+[tool.poetry]
+package-mode = false

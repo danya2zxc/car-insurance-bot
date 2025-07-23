@@ -1,11 +1,12 @@
 import asyncio
 import logging
-from aiogram import Dispatcher, Bot
-from app.config import s
-from app.handlers import router
-from aiogram.fsm.storage.memory import MemoryStorage
+
+from aiogram import Bot, Dispatcher
+from aiogram.fsm.storage.redis import Redis, RedisStorage
 from aiogram.types import BotCommand
 
+from app.config import s
+from app.handlers import router
 
 
 # --- Set up logging ---
@@ -18,12 +19,15 @@ async def set_commands(bot):
     ]
     await bot.set_my_commands(commands)
 
+
+# --- Initialize Redis storage ---
+redis = Redis(host=s.redis_host, port=s.redis_port, db=s.redis_db)
+storage = RedisStorage(redis=redis)
+
+
 # --- Initialize bot and dispatcher ---
 bot = Bot(token=s.telegram_bot_token)
-storage = MemoryStorage()
-dp = Dispatcher(storage=storage
-)
-
+dp = Dispatcher(storage=storage)
 
 
 # --- Main function to start the bot ---

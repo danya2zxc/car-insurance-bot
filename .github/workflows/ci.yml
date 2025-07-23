@@ -1,0 +1,47 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  code-quality-and-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Step 3: Install Poetry
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      # Step 4: Configure Poetry
+      - name: Configure Poetry
+        run: |
+          poetry config virtualenvs.create false
+
+      # Step 5: Install dependencies
+      - name: Install dependencies
+        run: poetry install --with dev --no-interaction --no-ansi
+
+      # Step 6: Run linters and formatters
+      - name: Run linters and formatters
+        run: |
+          poetry run ruff check .
+          poetry run ruff format --check
+        
+
