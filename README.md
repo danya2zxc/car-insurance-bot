@@ -15,6 +15,8 @@ The bot is deployed and live on Railway. You can interact with it here:
 **[>> Click to start a chat with the bot <<](https://t.me/Auto_Insure_bot)** 
 
 
+![Bot Demo](demo.gif)
+
 ---
 
 ## ✨ Features
