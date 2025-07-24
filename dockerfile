@@ -23,16 +23,13 @@ ENV PATH="/root/.local/bin:$PATH"
 # Set working dir
 WORKDIR /app
 
-# Copy only files required to install dependencies
-COPY pyproject.toml poetry.lock README.md ./
+# copy full project
+COPY ./ ./ 
 
 
 # install project dependencies
-RUN poetry install --no-interaction --no-ansi --no-root
+RUN poetry install --no-root --no-interaction --no-ansi 
 
-
-# copy full project
-COPY ./ ./ 
 
 
 #  Run app for development
