@@ -24,11 +24,11 @@ ENV PATH="/root/.local/bin:$PATH"
 WORKDIR /app
 
 # copy full project
-COPY ./ ./ 
+COPY . .
 
 
 # install project dependencies
-RUN poetry install --no-root --no-interaction --no-ansi 
+RUN poetry install --no-interaction --no-ansi 
 
 
 

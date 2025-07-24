@@ -1,13 +1,10 @@
 [tool.poetry]
-name = "app" 
+name = "car-insurance-bot"
 version = "0.1.0"
 description = "Telegram bot for car insurance sales with document OCR and LLM-powered dialogs"
 authors = ["Daniel <danya2zxc@gmail.com>"]
 license = "MIT"
-readme = "README.md"
 packages = [{ include = "app" }]
-
-
 
 [tool.poetry.dependencies]
 python = ">=3.11"
