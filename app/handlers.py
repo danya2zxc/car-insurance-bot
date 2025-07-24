@@ -1,7 +1,7 @@
 from aiogram import Bot, F, Router
-from aiogram.filters import CommandStart
+from aiogram.filters import Command, CommandStart, StateFilter
 from aiogram.fsm.context import FSMContext
-from aiogram.types import CallbackQuery, Message
+from aiogram.types import CallbackQuery, Message, ReplyKeyboardRemove
 
 import app.keyboard as kb
 from app.config import s
@@ -13,6 +13,33 @@ from app.utils.file_utils import get_clean_text, get_summary_text
 
 # Initialize the router
 router = Router()
+
+HELP_TEXT = (
+    "Hello! I'm your car insurance assistant. 🤖\n\n"
+    "To start the process of getting your insurance policy, please use the /start command.\n\n"
+    "If you get stuck at any point, you can always use the /cancel command to restart the process from the beginning."
+)
+
+
+# --- Command Handlers ---
+@router.message(Command("help"))
+async def handle_help(message: Message):
+    """Handler for the /help command."""
+    await message.answer(HELP_TEXT)
+
+
+@router.message(StateFilter("*"), Command("cancel"))
+async def handle_cancel(message: Message, state: FSMContext) -> None:
+    """Allow user to cancel any action at any time."""
+    current_state = await state.get_state()
+    if current_state is None:
+        return  # Nothing to cancel
+
+    await state.clear()
+    await message.answer(
+        "Action canceled. To start over, use the /start command.",
+        reply_markup=ReplyKeyboardRemove(),
+    )
 
 
 # --- PRIVATE HELPER FOR THIS MODULE ---
