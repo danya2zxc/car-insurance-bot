@@ -36,7 +36,7 @@ jobs:
 
       # Step 5: Install dependencies
       - name: Install dependencies
-        run: poetry install --with dev --no-interaction --no-ansi
+        run: poetry install --with dev --no-interaction --no-ansi --no-root
 
       # Step 6: Run linters and formatters
       - name: Run linters and formatters
@@ -45,3 +45,12 @@ jobs:
           poetry run ruff format --check
         
 
+      # Step 7: Run tests
+      - name: Run tests
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          MINDEE_PASSPORT_API_KEY: ${{ secrets.MINDEE_PASSPORT_API_KEY }}
+          MINDEE_VEHICLE_DOCUMENT_API_KEY: ${{ secrets.MINDEE_VEHICLE_DOCUMENT_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+        run: poetry run pytest

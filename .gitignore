@@ -40,3 +40,7 @@ __pycache__/
 # linters / checkers
 .mypy_cache/
 .ruff_cache/
+
+
+# pytett
+.pytest_cache/

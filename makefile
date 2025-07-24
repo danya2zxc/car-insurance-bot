@@ -33,3 +33,14 @@ lint:
 fix:
 	$(RUFF) check . --fix
 	$(RUFF) format .
+
+
+# Run tests 
+test:
+	poetry run pytest
+
+
+# Run linters and tests
+check:
+	make lint
+	make test

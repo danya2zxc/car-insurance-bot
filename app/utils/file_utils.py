@@ -17,7 +17,7 @@ async def download_user_photo(photo, bot, name: str):
 
 # --- Function to clean text by removing the confirmation question ---
 def get_clean_text(original_text: str) -> str:
-    return original_text.rsplit("\n\n🟩 Is this data correct?", 1)[0]
+    return original_text.rsplit("\n\n🟩 Is this data correct?")[0]
 
 
 # --- Function to get passport extracted text ---

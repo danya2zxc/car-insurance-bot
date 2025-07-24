@@ -11,9 +11,7 @@ class Settings(BaseSettings):
     openai_model: str = "gpt-4o-mini"
     insurance_price: int = 100  # Default insurance price
 
-    redis_host: str = "redis"
-    redis_port: int = 6379
-    redis_db: int = 0
+    redis_url: str
 
     class Config:
         env_file = ".env"

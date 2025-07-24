@@ -21,7 +21,7 @@ async def set_commands(bot):
 
 
 # --- Initialize Redis storage ---
-redis = Redis(host=s.redis_host, port=s.redis_port, db=s.redis_db)
+redis = Redis.from_url(s.redis_url)
 storage = RedisStorage(redis=redis)
 
 
